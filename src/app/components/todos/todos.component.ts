@@ -31,5 +31,11 @@ export class TodosComponent {
       }
     ]
   }
+  deleteTodo (todo : Todo){
+    console.log("I am working", todo);
+    let index = this.todos.indexOf(todo);
+    this.todos.splice(index, 1);
+   
+  }
 
 }
