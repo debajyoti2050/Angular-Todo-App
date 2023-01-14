@@ -38,4 +38,11 @@ export class TodosComponent {
    
   }
 
+  addTodo (todo : Todo){
+    console.log("I am working", todo);
+    let index = this.todos.length + 1;
+    todo.sno = index;
+    this.todos.push(todo);
+  }
+
 }
