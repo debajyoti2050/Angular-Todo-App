@@ -24,6 +24,7 @@ export class TodosComponent {
     console.log("I am working", todo);
     let index = this.todos.indexOf(todo);
     this.todos.splice(index, 1);
+    localStorage.setItem("todos", JSON.stringify(this.todos));
    
   }
 
