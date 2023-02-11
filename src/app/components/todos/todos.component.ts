@@ -7,29 +7,18 @@ import { Todo } from 'src/app/Todo';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent {
+  localItem : string;
   todos : Todo[] ;
 
   constructor(){
-    this.todos = [
-      {
-        sno: 1,
-        title: "Go to the market",
-        desc: "You need to go to the market to get this job done",
-        active: true
-      },
-      {
-        sno: 2,
-        title: "Go to the mall",
-        desc: "You need to go to the mall to get this job done",
-        active: true
-      },
-      {
-        sno: 3,
-        title: "Go to the school",
-        desc: "You need to go to the school to get this job done",
-        active: true
-      }
-    ]
+    this.localItem = localStorage.getItem("todos");
+    if (this.localItem == null){
+      this.todos = [];
+    }
+    else{
+      this.todos = JSON.parse(this.localItem);
+    }
+    
   }
   deleteTodo (todo : Todo){
     console.log("I am working", todo);
@@ -43,6 +32,14 @@ export class TodosComponent {
     let index = this.todos.length + 1;
     todo.sno = index;
     this.todos.push(todo);
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+
+  toggleTodo (todo : Todo){
+    console.log("I am working", todo);
+    let index = this.todos.indexOf(todo);
+    this.todos[index].active = !this.todos[index].active;
+    localStorage.setItem("todos", JSON.stringify(this.todos));
   }
 
 }
